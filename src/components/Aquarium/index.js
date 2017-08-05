@@ -1,35 +1,37 @@
 // Dependencies
-import React, { PureComponent } from 'react';
-import map from 'lodash';
+import React, { Component, PropTypes } from 'react';
+import map from 'lodash/map';
 
 
-class Aquarium extends PureComponent {
+
+class Aquarium extends Component {
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
+    selectedItems: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       displayName: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired,
       co2Effect: PropTypes.number.isRequired,
       phEffect: PropTypes.number.isRequired,
-    })).isRequired
-  }
+    })).isRequired,
+  };
 
   render() {
+    const { selectedItems, totalRows } = this.props;
+    console.log('selectedItems in aquarium', selectedItems);
+
     return (
-      <table>
-        <thead>
-          <tr>
-            {map(this.props.items, (item) => (
-              <th>{item.displayName}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="aquarium">
+        {map(selectedItems, (item, index) => (
+          <img
+            alt={item.displayName}
+            className="item"
+            key={index}
+            src={item.src}
+          />
+        ))}
+      </div>
     );
   }
 }
+
+export default Aquarium;
