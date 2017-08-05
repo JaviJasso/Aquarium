@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.logo-banner {
+  background: black;
+  color: white;
+  width: 100%;
+}
+
+.items {
+  background: blue;
+  color: white;
+  width: 100%;
+}
+
+.aquarium {
+  background: purple;
+  color: white;
+  width: 100%;
+}
+
+.analytics {
+  background: green;
+  color: white;
+  width: 100%;
+}
