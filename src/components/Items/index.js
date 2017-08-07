@@ -4,36 +4,35 @@ import map from 'lodash/map';
 // Internals
 import './index.css';
 
-
-
-class Aquarium extends Component {
+class Items extends Component {
   static propTypes = {
-    selectedItems: PropTypes.arrayOf(PropTypes.shape({
+    itemButtons: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       displayName: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired,
       co2Effect: PropTypes.number.isRequired,
       phEffect: PropTypes.number.isRequired,
     })).isRequired,
+    selectItem: PropTypes.func.isRequired,
   };
 
   render() {
-    const { selectedItems, totalRows } = this.props;
-    console.log('selectedItems in aquarium', selectedItems);
+    const { itemButtons, selectItem } = this.props;
 
     return (
-      <div className="aquarium">
-        {map(selectedItems, (item, index) => (
-          <img
-            alt={item.displayName}
-            className="item"
-            key={index}
-            src={item.src}
-          />
+      <div className="items">
+        {map(itemButtons, (item) => (
+          <button
+            className="add-item"
+            key={item.id}
+            onClick={() => selectItem(item)}
+          >
+            {item.displayName}
+          </button>
         ))}
       </div>
     );
   }
 }
 
-export default Aquarium;
+export default Items;
