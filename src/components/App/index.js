@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import map from 'lodash/map';
 // Externals
 import Aquarium from '../Aquarium';
+import Items from '../Items';
 // Internals
 import './index.css';
 
@@ -42,7 +43,6 @@ class App extends Component {
         },
       ]
     };
-
     this.selectItem = this.selectItem.bind(this);
   }
 
@@ -55,24 +55,12 @@ class App extends Component {
 
   render() {
     const { selectedItems, items } = this.state;
-    console.log('selectedItems,', selectedItems);
-
     return (
       <div className="App">
         <div className="logo-banner">
           logo
         </div>
-        <div className="items">
-          {map(items, (item) => (
-            <button
-              className="add-item"
-              key={item.id}
-              onClick={() => this.selectItem(item)}
-            >
-              {item.displayName}
-            </button>
-          ))}
-        </div>
+        <Items itemButtons={items} selectItem={this.selectItem} />
         <Aquarium selectedItems={selectedItems} />
         <div className="analytics">
           analytics
